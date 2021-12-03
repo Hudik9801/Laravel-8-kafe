@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Layout title - @yield('title')</title>
+    <title>Title Layouts - @yield('title')</title>
 </head>
 <body>
 @section('sidebar')
