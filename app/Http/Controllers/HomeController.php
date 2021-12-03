@@ -17,7 +17,7 @@ class HomeController extends Controller
         $data['$id']=$id;
         $data['name']=$name;
 
-        return view('Home.test',["id"=>$id,'name'=>$name]);
+        return view('Home.test',["id"=>$id,$data]);
       /*echo "İd number:",$id;
         echo "<br>Name:",$name;
 
