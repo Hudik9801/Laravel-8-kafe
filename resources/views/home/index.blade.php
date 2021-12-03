@@ -23,7 +23,7 @@
 
     <h1>İçeriklerimiz</h1>
     proje<br>
-    monitor<br>
+    monaitor<br>
     </div>
 
 @endsection
