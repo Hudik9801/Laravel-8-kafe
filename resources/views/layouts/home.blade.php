@@ -31,7 +31,7 @@
 
         @section('content')
         <div class="col-sm-8">
-            <h1>Slider</h1>
+            <h1>Slider5</h1>
             <br>
             <br>
             <hr>
