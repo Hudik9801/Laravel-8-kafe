@@ -6,8 +6,8 @@
 @section('content')
     <div class="col-sm-12">
         <h1>About Us</h1>
-         aaaaaaaaaaaa<br>
-        ssssssssssss<br>
+         aaaaaaaaafffaaa<br>
+        ssssfffssssssss<br>
 
         <br>
         <br>
