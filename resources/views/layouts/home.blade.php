@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>@yield('title')</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="@yield('title')">
+    <meta name="description" content="@yield('title')">
+    <meta name="author" content="Hudayberdi Ashyrov">
+    <title>@yield('title')</title>
+    <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/prettyPhoto.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/price-range.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/animate.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/css/main.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/responsive.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     @yield('css')
-    @yield('js')
+    @yield('headerjs')
+</head><!--/head-->
 
-</head>
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Header</h1>
-    <p>Resize this responsive page to see the effect!</p>
-    <a href="/">Home</a>
-    <a href="/aboutus">About Us</a>
-    @yield('header')
-</div>
-
-<div class="container">
-    <div class="row">
-
-        @section('sidebar')
-        <div class="col-m-4">
+@include('home._header')
+<!--NAVİGATİON-->
+<div id="navigation">
+    <div class="container">
+        <div id="responsive-nav">
+            @include('home._menu')
+            @include('home._category')
 
         </div>
-        @show
-
-        @section('content')
-        <div class="col-sm-8">
-            <h1>Slider5</h1>
-            <br>
-            <br>
-            <hr>
-            <h3>Content</h3>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
-            @show
 
     </div>
 </div>
-<div class="jumbotron text-center">
-    <h1>Footer</h1>
-    <p>Sayfa altı</p>
-    @yield('footer')
-</div>
+@section('section')
+    İçerik Alan
+@show
+
+
+@include('home._footer')
+@yield('footerjs')
+
+
+
+
+
+
 </body>
 </html>
