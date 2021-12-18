@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $datalist = DB::select('select * from categpries');
+        $datalist = DB::select('select * from categories');
          //print_r($datalist);
          //exit();
         return view('admin.category', ['datalist' => $datalist]);
@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
     public function add()
     {
-        $datalist=DB::table('categpries')->get()->where('parent_id',0);
+        $datalist=DB::table('categories')->get()->where('parent_id',0);
 
         //print_r($datalist);
         //exit();
@@ -47,7 +47,7 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
 
-        DB::table('categpries')->insert([
+        DB::table('categories')->insert([
             'parent_id' =>$request->input('parent_id'),
             'title' =>$request->input('title'),
             'keywords' =>$request->input('keywords'),
@@ -79,7 +79,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+
     }
 
     /**
@@ -88,9 +88,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category,$id)
     {
-        //
+       $data=Category::find($id);
+        $datalist=DB::table('categories')->get()->where('parent_id',0);
+       return view('admin.category_edit',['data'=>$data,'datalist'=>$datalist]);
     }
 
     /**
@@ -100,9 +102,19 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category,$id)
     {
-        //
+        $data = Category::find($id);
+        $data->parent_id =$request->input('parent_id');
+        $data->title =$request->input('title');
+        $data->keywords=$request->input('keywords');
+        $data->description =$request->input('description');
+        $data->slug=$request->input('slug');
+        $data->status =$request->input('status');
+        $data->save();
+        return redirect()->route('admin_category');
+
+
     }
 
     /**
@@ -113,7 +125,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category,$id)
     {
-        DB::table('categpries')->where('id', '=', $id)->delete();
+        DB::table('categories')->where('id', '=', $id)->delete();
         return redirect()->route('admin_category');
     }
 }
