@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Category List')
+@section('title', 'Product List')
 
 
 
@@ -16,13 +16,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h3>Categories</h3>
+                        <h3>Products</h3>
 
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Product</li>
                         </ol>
                     </div>
 
@@ -36,7 +36,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="{{route('admin_category_add')}}" type="button" class="btn btn-primary me-2" style="width: 200px" id="js-programmatic-enable">Add Category</a>
+                    <a href="{{route('admin_product_add')}}" type="button" class="btn btn-primary me-2" style="width: 200px" id="js-programmatic-enable" enctype="multipart/form-data">Add Product</a>
                 </div>
                 <div class="card-body">
                         <div class="table-responsive">
@@ -44,11 +44,16 @@
                                 <thead>
                                 <tr>
                                     <th>İd</th>
-                                    <th>Parent</th>
+                                    <th>category</th>
                                     <th>Title</th>
+                                    <th>price</th>
                                     <th>Status</th>
+                                    <th>İmage</th>
+                                    <th>İmage Gallery</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
+
+
                                 </tr>
                                 </thead>
 
@@ -57,13 +62,24 @@
                                     @foreach ($datalist as $rs)
                                         <tr>
                                     <td>{{ $rs->id }}</td>
-                                    <td>
-                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
-                                    </td>
-                                    <td>{{ $rs->title }}</td>
-                                    <td>{{ $rs->status }}</td>
-                                            <td><a href="{{route('admin_category_edit',['id'=> $rs->id])}}">Edit</a></td>
-                                    <td><a href="{{route('admin_category_delete',['id'=> $rs->id])}}" onlick="return confirm('Delete! Are you sure?') "> Delete</a></td>
+                                            <td>
+                                                {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title)}}
+
+                                            </td>
+                                            <td>{{ $rs->title }}</td>
+                                            <td>{{ $rs->price }}</td>
+                                            <td>{{ $rs->status }}</td>
+                                            <td>
+                                                @if($rs->image)
+                                                    <img src="{{Storage::url($rs->image)}}" height="50" alt="">
+                                                @endif
+                                            </td>
+                                            <td><a href="{{route('admin_image_add',['product_id'=>$rs->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')" >
+                                                    <img src="{{asset('assets/admin/img')}}/gallery.png" height="40"></a></td>
+
+
+                                            <td><a href="{{route('admin_product_edit',['id'=> $rs->id])}}"><img src="{{asset('assets/admin/img')}}/pencil.png" height="30"></a></td>
+                                            <td><a href="{{route('admin_product_delete',['id'=> $rs->id])}}" onlick="return confirm('Delete! Are you sure?') "> <img src="{{asset('assets/admin/img')}}/bin.png" height="30"></a></td>
                                 </tr>
                                 @endforeach
                                 </div>

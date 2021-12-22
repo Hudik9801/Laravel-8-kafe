@@ -22,10 +22,14 @@
     <link href="{{asset('assets')}}/admin/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets')}}/admin/vendor/nouislider/nouislider.min.css">
 
+
     <!-- Style css -->
     <link href="{{asset('assets')}}/admin/css/style.css" rel="stylesheet">
     @yield('css')
     @yield('javascript')
+
+
+
 
 </head>
 <body>

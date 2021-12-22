@@ -1,11 +1,21 @@
+@php
+    $setting=\App\Http\Controllers\HomeController::getsetting()
+@endphp
 <footer id="footer"><!--Footer-->
     <div class="footer-top">
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
                     <div class="companyinfo">
-                        <h2><span>e</span>-shopper</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                        <h2>Adress</h2>
+                        {{$setting->company}}<br>
+                        {{$setting->address}}<br>
+                        <strong>Phone:</strong>{{$setting->phone}}<br>
+                        <strong>Fax:</strong>{{$setting->fax}}<br>
+                        <strong>Email:</strong>{{$setting->email}}<br>
+
+
+
                     </div>
                 </div>
                 <div class="col-sm-7">
@@ -148,7 +158,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
+                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc.{{$setting->company}}</p>
                 <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="@yield('title')">
-    <meta name="description" content="@yield('title')">
+    <meta name="viewport" content="@yield('viewport')">
+    <meta name="description" content="@yield('description')">
     <meta name="author" content="Hudayberdi Ashyrov">
     <title>@yield('title')</title>
     <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet"/>
@@ -40,7 +40,7 @@
     </div>
 </div>
 @section('section')
-    İçerik Alan
+
 @show
 
 

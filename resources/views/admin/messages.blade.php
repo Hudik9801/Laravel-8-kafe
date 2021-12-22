@@ -1,11 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Category List')
+@section('title', 'Contact Messages List')
 
 
 
 
 @section('content')
+
 
     <!--**********************************
             Content body start
@@ -16,13 +17,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h3>Categories</h3>
+                        <h3>Messages</h3>
 
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Messages</li>
                         </ol>
                     </div>
 
@@ -36,7 +37,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <a href="{{route('admin_category_add')}}" type="button" class="btn btn-primary me-2" style="width: 200px" id="js-programmatic-enable">Add Category</a>
+                    @include('home.message')
                 </div>
                 <div class="card-body">
                         <div class="table-responsive">
@@ -44,11 +45,18 @@
                                 <thead>
                                 <tr>
                                     <th>İd</th>
-                                    <th>Parent</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Admin Note</th>
+                                    <th>İP</th>
                                     <th>Status</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+
+                                    <th style=".." colspan="3">Actions</th>
+
+
                                 </tr>
                                 </thead>
 
@@ -56,14 +64,23 @@
                                 <div class="card-body">
                                     @foreach ($datalist as $rs)
                                         <tr>
-                                    <td>{{ $rs->id }}</td>
-                                    <td>
-                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
-                                    </td>
-                                    <td>{{ $rs->title }}</td>
-                                    <td>{{ $rs->status }}</td>
-                                            <td><a href="{{route('admin_category_edit',['id'=> $rs->id])}}">Edit</a></td>
-                                    <td><a href="{{route('admin_category_delete',['id'=> $rs->id])}}" onlick="return confirm('Delete! Are you sure?') "> Delete</a></td>
+                                                 <td>{{ $rs->id }}</td>
+
+                                            <td>{{ $rs->name }}</td>
+                                            <td>{{ $rs->email }}</td>
+                                            <td>{{ $rs->phone }}</td>
+                                            <td>{{ $rs->subject }}</td>
+                                            <td>{{ $rs->message }}</td>
+                                            <td>{{ $rs->note }}</td>
+                                            <td>{{ $rs->ip }}</td>
+                                            <td>{{ $rs->status }}</td>
+
+                                            <td><a href="{{route('admin_message_edit',['id'=>$rs->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')" >
+                                                    <img src="{{asset('assets/admin/img')}}/pencil.png" height="20"></a></td>
+
+
+
+                                            <td><a href="{{route('admin_message_delete',['id'=> $rs->id])}}" onlick="return confirm('Delete! Are you sure?') "> <img src="{{asset('assets/admin/img')}}/bin.png" height="20"></a></td>
                                 </tr>
                                 @endforeach
                                 </div>

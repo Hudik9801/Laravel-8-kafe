@@ -4,7 +4,7 @@
 <div class="dlabnav">
     @auth
         <a href="#" class="d-block">{{Auth::user()->name}}</a>
-        <a href="{{route('admin_logout')}}" class="d-block">Logout</a>
+        <a href="{{route('logout')}}" class="d-block">Logout</a>
     @endauth
     <div class="dlabnav-scroll">
         <div class="profile-info1">
@@ -22,13 +22,26 @@
 
 
             </li>
-
-            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="nav-text">Products</span>
+            <li><a class="has-arrow " href="{{route('admin_products')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    Products
                 </a>
-
             </li>
+            <li><a class="has-arrow " href="{{route('admin_message')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    Contact Messages
+                </a>
+            </li>
+
+
+
+            <li class="nav-item">
+                <a class="has-arrow " href="{{route('admin_setting')}}" class="nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    Settings
+                </a>
+            </li>
+
 
         </ul>
         <div class="side-bar-profile">
