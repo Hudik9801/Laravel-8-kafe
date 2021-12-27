@@ -34,11 +34,18 @@
                         @endforeach
 
                     </div>
+
+
                 </div>
         </div>
         </div>
     </div>
 </section>
+
+@include('home.home_products')
+
+
+
 
                 <!--/category-products-->
 

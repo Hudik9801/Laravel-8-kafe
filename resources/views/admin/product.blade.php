@@ -2,6 +2,10 @@
 
 @section('title', 'Product List')
 
+@php
+    $datalist=\App\Models\Product::all();
+@endphp
+
 
 
 

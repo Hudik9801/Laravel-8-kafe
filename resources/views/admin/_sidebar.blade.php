@@ -35,12 +35,25 @@
 
 
 
+
             <li class="nav-item">
                 <a class="has-arrow " href="{{route('admin_setting')}}" class="nav-link">
                     <i class="fas fa-info-circle"></i>
                     Settings
                 </a>
             </li>
+            <li><a class="has-arrow " href="{{route('admin_review')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    Reviews
+                </a>
+            </li>
+            <li><a class="has-arrow " href="{{route('admin_faq')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    FAQ
+                </a>
+            </li>
+
+
 
 
         </ul>

@@ -47,10 +47,10 @@
                             @endauth
 
                             <li><a href="{{route('myprofile')}}"><i class="fa fa-lock"></i> My Account</a></li>
-
-                            <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{route('user_products')}}"><i class="fa fa-pro"></i>My Product</a></li>
+                            <li><a href="{{route('myreviews')}}"><i class="fa fa-receipt"></i> My Review</a></li>
+                            <li><a href="cart.html"><i class="fa fa-first-order"></i>Orders</a></li>
+                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i>My Cartshop</a></li>
                             <li><a href="{{route('logout')}}"><i class="fa fa-lock"></i> Logout</a></li>
 
 
@@ -80,13 +80,17 @@
                             <li class="dropdown"><a href="#">Campains<i class="fa fa-angle-down"></i></a>
                             </li>
                             <li class="dropdown"><a href="{{route('home')}}">New Products<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="blog.html">Blog List</a></li>
+                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                </ul>
                             </li>
                             <li class="dropdown"><a href="{{route('aboutus')}}">Aboutus <i class="fa fa-angle-down"></i></a>
                             </li>
                             <li class="dropdown"><a href="{{route('references')}}">References<i class="fa fa-angle-down"></i></a>
                             </li>
 
-                            <li class="dropdown"><a href="{{route('fag')}}">Faq<i class="fa fa-angle-down"></i></a>
+                            <li class="dropdown"><a href="{{route('faq')}}">Faq<i class="fa fa-angle-down"></i></a>
                             </li>
                             <li class="dropdown"><a href="{{route('contact')}}">Contact<i class="fa fa-angle-down"></i></a>
                             </li>
@@ -94,11 +98,21 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
-                    </div>
+                <div class="header-search">
+                    <form action="{{route('getproduct')}}" method="post">   <!---aramaaaa--->
+                        @csrf
+                        @livewire('search')
+                        <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                    </form>
+                    @section('footerjs')
+                    @livewireScripts
+                    @endsection
+
+
+
                 </div>
+
+
             </div>
         </div>
     </div><!--/header-bottom-->

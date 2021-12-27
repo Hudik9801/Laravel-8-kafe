@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Review;
 use App\Models\Category;
+use App\Models\Faq;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Setting;
 use http\Message;
@@ -23,16 +26,99 @@ class HomeController extends Controller
         return Setting::first();
 
     }
+    public static function getslider()
+    {
+        return Product::first();
+
+    }
+    public static function countreview($id)
+    {
+        return \App\Models\Review::where('product_id',$id)->count();
+
+    }
+    public static function avgreview($id)
+    {
+        return \App\Models\Review::where('product_id',$id)->average('rate');
+
+    }
 
     public function index()
     {
-        $setting=Setting::first();
-        return view('home.index',['setting'=>$setting]);
+       $setting = Setting::first();
+      $slider = Product::select('id','title','price','image')->limit(4)->get();
+      $daily = Product::select('id','title','price','image')->limit(3)->InRandomOrder->get();
+      $last = Product::select('id','title','price','image')->limit(6)->OrderByDesc->get();
+      $picked = Product::select('id','title','price','image')->limit(6)->InRandomOrder->get();
+      #print_r($daily);
+      #exit();
+       $data=[
+         'setting'=>$setting,
+         'slider'=>$slider,
+           'daily'=>$daily,
+           'last'=>$last,
+           'picked'=>$picked,
+         'page'=>'home'
+
+       ];
+        return view('home.index',$data);
 
     }
+    public function product($id)
+    {
+        $data=Product::find($id);
+        $datalist = Image::where('product_id',$id)->get();
+        $reviews=\App\Models\Review::where('product_id',$id)->get();
+
+        return view('home.product_details',['data'=>$data,'datalist'=>$datalist,'reviews'=>$reviews]);
+
+    }
+    public function categoryproducts($id)
+    {
+        $datalist=Product::where('category_id',$id)->get();
+        $data=Product::find($id);
+       # print_r($data);
+        #exit();
+        return view('home.category_products',['data'=>$data,'datalist'=>$datalist]);
+
+
+
+    }
+    public function addtocard($id)
+    {
+        echo "add to card<br>";
+        $data = Product::find($id);
+        print_r($data);
+        exit();
+    }
+    public function getproduct(Request $request)
+    {
+        $search=$request->input('search');
+        $count=Product::where('title','like','%'.$search.'%')->get()->count();
+        if ($count==1)
+        {
+            $data=Product::where('title','like','%'.$search.'%')->first();
+            return redirect()->route('product',['id'=>$data->id,'slug'=>$data->slug]);
+
+        }
+        else
+        {
+         return redirect()->route('productlist',['search'=>$search]);
+        }
+
+    }
+
+    public function productlist($search)
+    {
+        $datalist=Product::where('title','like','%'.$search.'%')->get();
+        return view('home.search_products',['search'=>$search,'datalist'=>$datalist]);
+
+    }
+
+
+
     public function aboutus()
     {
-        $setting=Setting::first();
+         $setting=Setting::first();
         return view('home.about',['setting'=>$setting]);
 
     }
@@ -44,9 +130,10 @@ class HomeController extends Controller
 
     }
 
-    public function fag()
+    public function faq()
     {
-        return view( 'home.fag');
+        $datalist=Faq::all()->sortBy('position');
+        return view('home.faq',['datalist'=>$datalist]);
 
     }
 

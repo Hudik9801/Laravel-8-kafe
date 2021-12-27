@@ -1,3 +1,8 @@
+@php
+    $slider= \App\Models\Product::all();
+@endphp
+
+
 <section id="slider"><!--slider-->
     <div class="container">
         <div class="row">
@@ -10,43 +15,44 @@
                     </ol>
 
                     <div class="carousel-inner">
-                        <div class="item active">
+                       @php
+                       $i=0;
+                       @endphp
+                        @foreach($slider as $rs)
+                            @php
+                            $i+=1;
+                            @endphp
+                        <div class="item @if($i==1)active @endif">
                             <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free E-Commerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src=" {{asset('assets')}}/images/home/girl1.jpg" class="girl img-responsive" alt="" />
-                                <img src=" {{asset('assets')}}/images/home/pricing.png"  class="pricing" alt="" />
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>100% Responsive Design</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src=" {{asset('assets')}}/images/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                <img src=" {{asset('assets')}}/images/home/pricing.png"  class="pricing" alt="" />
-                            </div>
-                        </div>
+                                <h1>{{$rs->title}}</h1>
+                                <h2>{{$rs->price}}</h2>
 
-                        <div class="item">
+
+                                <a href="{{route('product',['id'=>$rs->id])}}" type="button" class="btn btn-default get">Tadina Bak</a>
+                            </div>   <!--YAAAAAAAAAAAAAAAAAAAAP-->
                             <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free Ecommerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src=" {{asset('assets')}}/images/home/girl3.jpg" class="girl img-responsive" alt="" />
-                                <img src=" {{asset('assets')}}/images/home/pricing.png" class="pricing" alt="" />
+                                <img src="{{Storage::url($rs->image)}}" class="girl img-responsive" alt="" />
+                                <div>
+                                    @php
+                                        $avgrev=\App\Http\Controllers\HomeController::avgreview($rs->id);
+                                        $countreview=\App\Http\Controllers\HomeController::countreview($rs->id);
+                                    @endphp
+                                    <div class="product-rating">
+                                        <i class="fa fa-star @if($avgrev<1) -o empty @endif"></i>
+                                        <i class="fa fa-star @if($avgrev<2) -o empty @endif"></i>
+                                        <i class="fa fa-star @if($avgrev<3) -o empty @endif"></i>
+                                        <i class="fa fa-star @if($avgrev<4) -o empty @endif"></i>
+                                        <i class="fa fa-star @if($avgrev<5) -o empty @endif"></i>
+                                        <i>{{$countreview}}</i>
+
+                                    </div>
+                                    <a href="#tab2">{{$countreview}} Rewview(s) {{$avgrev}}/Add Review</a>
+                                </div>
+
                             </div>
                         </div>
+                        @endforeach
+
 
                     </div>
 
@@ -61,4 +67,10 @@
             </div>
         </div>
     </div>
+
+
 </section><!--/slider-->
+
+
+
+
