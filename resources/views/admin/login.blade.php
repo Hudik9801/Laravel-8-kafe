@@ -36,6 +36,7 @@
                                     <a href="index.html">ADMİN</a>
                                 </div>
                                 <h4 class="text-center mb-4">Sign in your account</h4>
+                                @include('home.message')
                                 <form method="POST" action="{{ route('admin_logincheck') }}" class="md-float-material">
                                     @csrf
                                     <div class="form-group position-relative has-icon-left mb-4">

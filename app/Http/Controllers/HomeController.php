@@ -46,9 +46,9 @@ class HomeController extends Controller
     {
        $setting = Setting::first();
       $slider = Product::select('id','title','price','image')->limit(4)->get();
-      $daily = Product::select('id','title','price','image')->limit(3)->InRandomOrder->get();
-      $last = Product::select('id','title','price','image')->limit(6)->OrderByDesc->get();
-      $picked = Product::select('id','title','price','image')->limit(6)->InRandomOrder->get();
+      $daily = Product::select('id','title','price','image')->limit(3)->InRandomOrder();
+      $last = Product::select('id','title','price','image')->limit(6)->OrderByDesc('id');
+      $picked = Product::select('id','title','price','image')->limit(6)->inRandomOrder();
       #print_r($daily);
       #exit();
        $data=[

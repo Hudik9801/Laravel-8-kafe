@@ -52,6 +52,19 @@
                     FAQ
                 </a>
             </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-table"></i>
+                    <span class="nav-text">Orders</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{route('admin_orders')}}">All Orders</a></li>
+                    <li><a href="{{route('admin_orders')}}">New Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'canceled'])}}">Canceled Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'accepted'])}}">Accepted Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'shipping'])}}">Shipping Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'completed'])}}">Completed Orders</a></li>
+                </ul>
+            </li>
 
 
 

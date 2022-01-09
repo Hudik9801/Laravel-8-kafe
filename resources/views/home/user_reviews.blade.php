@@ -7,24 +7,21 @@
 <div id="breadcrumb">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 ">
-                <div class="login-form"><!--login form-->
-                    <ul class="breadcrumb">
-                        <li><a  href="{{route('home')}}"><i class="fa fa-home"  ></i>HOME</a></li>
-                        <li><a  href="#"><i class="fa fa-home"  ></i>User Profile</a></li>
-                        @include('home.usermenu')
-
-
-                    </ul>
-
-                    <div class="section">
-                        <div class="container">
-                            <div class="row">
+            <div class="card col-md-3">
+                <ul class="breadcrumb">
+                    <li><a  href="{{route('home')}}"><i class="fa fa-home"  ></i>HOME</a></li>
+                    <li><a  href="#"><i class="fa fa-home"  ></i>User Reviews</a></li>
+                    @include('home.usermenu')
 
 
 
+                </ul>
+            </div>
 
-                                <div id="main" class="col-md-10">
+
+            <div class="card col-md-9">
+                <div class="card-body">
+                    <div class="table-responsive">
 
                                    <table id="example1" class="table table-bordered table-striped">
                                        <thead>

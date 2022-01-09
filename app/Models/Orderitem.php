@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Shopcart extends Model
+class Orderitem extends Model
 {
     use HasFactory;
 
@@ -19,4 +19,5 @@ class Shopcart extends Model
         return $this->belongsTo(User::class);
 
     }
+
 }
