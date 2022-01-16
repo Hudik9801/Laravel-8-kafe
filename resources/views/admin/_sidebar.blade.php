@@ -2,16 +2,14 @@
             Sidebar start
         ***********************************-->
 <div class="dlabnav">
+
+
     @auth
         <a href="#" class="d-block">{{Auth::user()->name}}</a>
         <a href="{{route('logout')}}" class="d-block">Logout</a>
     @endauth
-    <div class="dlabnav-scroll">
-        <div class="profile-info1">
 
 
-
-        </div>
         <ul class="metismenu" id="menu">
 
 
@@ -66,10 +64,19 @@
                 </ul>
             </li>
 
+            <li><a class="has-arrow " href="{{route('admin_users')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    Users
+                </a>
+            </li>
+
+
 
 
 
         </ul>
+
+
         <div class="side-bar-profile">
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <div class="side-bar-profile-img">

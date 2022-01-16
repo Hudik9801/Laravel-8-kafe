@@ -49,7 +49,7 @@
                     <div class="col-md-8 clearfix">
                         <div class="shop-menu clearfix pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="{{route('admin_login')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}<i>{{Auth::user()->roles->pluck('name')}}</i></a></li>
+                                <li><a href="{{route('admin_login')}}"><i class="fa fa-user"></i> {{Auth::user()->name}}<i></i></a></li>
                                 @endauth
 
                                 <li><a href="{{route('myprofile')}}"><i class="fa fa-lock"></i> My Account</a></li>
@@ -59,7 +59,12 @@
                                 <li><a href="{{route('user_shopcart')}}"><i class="fa fa-shopping-cart"></i>My Shopcart</a>
                                 <span class="qty">{{\App\Http\Controllers\ShopcartController::countshopcart()}}:Ürün var</span>
                                 </li>
+                                @auth
                                 <li><a href="{{route('logout')}}"><i class="fa fa-lock"></i> Logout</a></li>
+                                    @endauth
+                                @guest
+                                    <li><a href="{{route('login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                                @endguest
 
 
 
@@ -82,15 +87,25 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
+                    @php
+                        $parentCategories= \App\Http\Controllers\HomeController::categoryList()
+
+                    @endphp
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
                             <li><a href="{{route('home')}}" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Campains<i class="fa fa-angle-down"></i></a>
-                            </li>
-                            <li class="dropdown"><a href="{{route('home')}}">New Products<i class="fa fa-angle-down"></i></a>
+                            <li class="dropdown"><a href="{{route('home')}}">Categories<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html"> </a></li>
-                                    <li><a href="blog-single.html"> </a></li>
+                                    @foreach($parentCategories as $rs)
+                                    <li><a> {{$rs->title}}</a>
+                                        <div class="panel-body">
+                                            @if(count($rs->children))
+                                                @include('home.categorytree',['children'=>$rs->children])
+                                            @endif
+                                        </div>
+                                    </li>
+
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="{{route('aboutus')}}">Aboutus <i class="fa fa-angle-down"></i></a>

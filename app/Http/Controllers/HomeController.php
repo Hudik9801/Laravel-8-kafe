@@ -47,8 +47,8 @@ class HomeController extends Controller
        $setting = Setting::first();
       $slider = Product::select('id','title','price','image')->limit(4)->get();
       $daily = Product::select('id','title','price','image')->limit(3)->InRandomOrder();
-      $last = Product::select('id','title','price','image')->limit(6)->OrderByDesc('id');
-      $picked = Product::select('id','title','price','image')->limit(6)->inRandomOrder();
+      $last = Product::select('id','title','price','image')->limit(3)->InRandomOrder();
+      $picked = Product::select('id','title','price','image')->limit(3)->InRandomOrder();
       #print_r($daily);
       #exit();
        $data=[
@@ -75,9 +75,8 @@ class HomeController extends Controller
     public function categoryproducts($id)
     {
         $datalist=Product::where('category_id',$id)->get();
-        $data=Product::find($id);
-       # print_r($data);
-        #exit();
+        $data=Category::find($id);
+
         return view('home.category_products',['data'=>$data,'datalist'=>$datalist]);
 
 

@@ -9,25 +9,6 @@
 
     <div class="content-body">
 
-        <section class="container-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h3></h3>
-
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Order Details</li>
-                        </ol>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </section>
 
 
 
@@ -87,24 +68,22 @@
                             </thead>
 
                         </table>
-                        <div>
-                            <button type="submit" class="btn btn-primary" >Update Order</button>
-                        </div>
+
+
+                        <button type="submit" class="btn btn-primary" >Update Order</button>
                     </div>
-
                 </form>
-
 
 
                 <table class="table table-condensed">
                     <thead>
-                    <tr class="cart_menu">
-                        <td>Image</td>
-                        <td >Product</td>
-                        <td >Price</td>
-                        <td >Total</td>
-                        <td >Status</td>
-                        <td >Note</td>
+                    <tr>
+                        <td class="text-center">Image</td>
+                        <td class="text-center">Product</td>
+                        <td class="text-center">Price</td>
+                        <td class="text-center">Total</td>
+                        <td class="text-center">Status</td>
+                        <td class="text-center">Note</td>
 
 
                     </tr>
@@ -116,64 +95,65 @@
                         $total=0;
                     @endphp
 
-                    <div class="card-body">
-                        @foreach ($datalist as $rs)
-                            <form role="form" action="{{route('admin_order_item_update',['id'=>$data->id])}}" method="post"   >
-                                @csrf
-                                <tr>
-                                    <td>
-                                        @if($rs->product->image)
-                                            <img src="{{Storage::url($rs->product->image)}}" height="30" alt="">
-                                        @endif
-                                    </td>
+
+                    @foreach ($datalist as $rs)
+                        <form role="form" action="{{route('admin_order_item_update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data"  >
+                            @csrf
+                            <tr>
+                                <td>
+                                    @if($rs->product->image)
+                                        <img src="{{Storage::url($rs->product->image)}}" height="30" alt="">
+                                    @endif
+                                </td>
 
 
-                                    <td><a href="{{route('product',['id'=>$rs->id])}}">{{ $rs->product->title }}</a>
-                                    </td>
-                                    <td>{{ $rs->product->price }}</td>
+                                <td>
+                                    <a href="{{route('product',['id'=>$rs->product->id])}}">
+                                        {{ $rs->product->title }}</a>
+                                </td>
+                                <td>{{ $rs->product->price }}</td>
 
-                                    <td>{{ $rs->amount}}</td>
+                                <td>{{ $rs->amount}}</td>
 
-                                    <td>
-                                        <select name="status">
-                                            <option selected>{{$rs->status}}</option>
-                                            <option>Accepted</option>
-                                            <option>Canceled</option>
-                                            <option>Shipping</option>
-                                            <option>Completed</option>
+                                <td>
+                                    <select name="status">
+                                        <option selected>{{$rs->status}}</option>
+                                        <option>Accepted</option>
+                                        <option>Canceled</option>
+                                        <option>Shipping</option>
+                                        <option>Completed</option>
 
-                                        </select>
-                                    </td>
-                                    <td><textarea name="note"  cols="15" >{{$rs->note}}</textarea></td>
-                                    <td><input type="submit" value="update" ></td>
+                                    </select>
+                                </td>
+                                <td><textarea name="note"  cols="15" >{{$rs->note}}</textarea></td>
+                                <td><input type="submit" value="update" ></td>
 
-                                </tr>
-                            </form>
+                            </tr>
+                        </form>
+
 
                     @endforeach
-
-
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4">&nbsp;</td>
-                        <td colspan="2">
-                            <table class="table table-condensed total-result">
-                                <tr>
-                                    <td>SUBTOTAL?</td>
-                                    <td>{{$total}}</td>  <!---product hata aldım  SUBTOTAL ayarla--->
-                                </tr>
+                        <th class="empty" colspan="4">&nbsp;</th>
 
-                            </table>
-                        </td>
+                        <table class="table table-condensed total-result">
+                            <tr>
+                                <th>SUBTOTAL</th>
+                                <th colspan="2" class="sub-total" >${{$rs->order->total}}</th>
+                            </tr>
+                        </table>
                     </tr>
                     </tfoot>
 
+
                 </table>
-
-
             </div>
+
         </div>
+    </div>
+
 
 
 

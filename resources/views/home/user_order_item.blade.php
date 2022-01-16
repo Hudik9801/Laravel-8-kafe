@@ -1,9 +1,29 @@
-@extends('layouts.home')
 
-
-@section('title','Order İtem')
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="@yield('viewport')">
+    <meta name="description" content="@yield('description')">
+    <meta name="author" content="Hudayberdi Ashyrov">
+    <title>Order Item</title>
+    <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/prettyPhoto.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/price-range.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/animate.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/css/main.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/responsive.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="{{asset('assets')}}/js/html5shiv.js"></script>
+    <script src="{{asset('assets')}}/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('assets')}}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets')}}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets')}}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets')}}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets')}}/images/ico/apple-touch-icon-57-precomposed.png">
+<body>
 
 
 
@@ -63,18 +83,23 @@
 
                             </tr>
 
+
+
                     @endforeach
 
 
                     </tbody>
                     <tfoot>
+
                     <tr>
                         <td colspan="4">&nbsp;</td>
                         <td colspan="2">
+
                             <table class="table table-condensed total-result">
+
                                 <tr>
-                                    <td>SUBTOTAL?</td>
-                                    <td>{{$total}}</td>  <!---product hata aldım  SUBTOTAL ayarla--->
+                                    <td>SUBTOTAL</td>
+                                    <td>${{$rs->order->total}}</td>
                                 </tr>
 
                             </table>
@@ -91,6 +116,9 @@
     </div>
 
 </div>
+</body>
+</html>
+
 
 
 
