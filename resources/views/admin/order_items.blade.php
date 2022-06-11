@@ -50,10 +50,11 @@
                                     <select name="status">
 
                                         <option selected>{{$data->status}}</option>
-                                        <option>Accepted</option>
-                                        <option>Canceled</option>
-                                        <option>Shipping</option>
-                                        <option>Completed</option>
+                                        <option>Kabul Edildi</option>
+                                        <option>Reddedildi</option>
+                                        <option>Hazırlanıyor</option>
+                                        <option>Yolda</option>
+                                        <option>Tamamlandı</option>
 
                                     </select>
                                 </td>
@@ -63,7 +64,6 @@
                                 <th>Admin Note:</th>
                                 <td><textarea name="note" rows="3" cols="15" >{{$data->note}}</textarea></td>
                             </tr>
-
 
                             </thead>
 
@@ -78,12 +78,11 @@
                 <table class="table table-condensed">
                     <thead>
                     <tr>
-                        <td class="text-center">Image</td>
-                        <td class="text-center">Product</td>
-                        <td class="text-center">Price</td>
-                        <td class="text-center">Total</td>
-                        <td class="text-center">Status</td>
-                        <td class="text-center">Note</td>
+                        <td class="text-center">Resim</td>
+                        <td class="text-center">Ürün ADI</td>
+                        <td class="text-center">Ürün Fiyat</td>
+
+
 
 
                     </tr>
@@ -102,7 +101,7 @@
                             <tr>
                                 <td>
                                     @if($rs->product->image)
-                                        <img src="{{Storage::url($rs->product->image)}}" height="30" alt="">
+                                        <img src="{{Storage::url($rs->product->image)}}" height="60" alt="">
                                     @endif
                                 </td>
 
@@ -113,20 +112,9 @@
                                 </td>
                                 <td>{{ $rs->product->price }}</td>
 
-                                <td>{{ $rs->amount}}</td>
 
-                                <td>
-                                    <select name="status">
-                                        <option selected>{{$rs->status}}</option>
-                                        <option>Accepted</option>
-                                        <option>Canceled</option>
-                                        <option>Shipping</option>
-                                        <option>Completed</option>
 
-                                    </select>
-                                </td>
-                                <td><textarea name="note"  cols="15" >{{$rs->note}}</textarea></td>
-                                <td><input type="submit" value="update" ></td>
+
 
                             </tr>
                         </form>
@@ -140,7 +128,7 @@
 
                         <table class="table table-condensed total-result">
                             <tr>
-                                <th>SUBTOTAL</th>
+                                <th>Toplam Fiyat</th>
                                 <th colspan="2" class="sub-total" >${{$rs->order->total}}</th>
                             </tr>
                         </table>
@@ -149,6 +137,8 @@
 
 
                 </table>
+
+
             </div>
 
         </div>

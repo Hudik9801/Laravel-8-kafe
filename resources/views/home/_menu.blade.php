@@ -3,7 +3,7 @@
 @endphp
 
 
-<section id="slider"><!--slider-->
+ <section id="slider"><!--slider-->
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -25,7 +25,7 @@
                             <div class="item @if($i==1)active @endif">
                                 <div class="col-sm-6">
                                     <h1>{{$rs->title}}</h1>
-                                    <h2>{{$rs->price}}</h2>
+                                    <h2>{{$rs->price}}₺</h2>
 
 
                                     <a href="{{route('product',['id'=>$rs->id])}}" type="button" class="btn btn-default get">Tadina Bak</a>

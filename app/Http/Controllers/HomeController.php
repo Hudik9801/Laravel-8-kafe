@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Livewire\Review;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Faq;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\User;
 use http\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -123,9 +126,9 @@ class HomeController extends Controller
     }
     public function references()
     {
-        $setting=Setting::first();
+        $comment=Comment::where('user_id','=',Auth::id())->get();
+        return view('home.references',['comment'=>$comment]);
 
-        return view('home.references',['setting'=>$setting]);
 
     }
 
@@ -221,5 +224,31 @@ class HomeController extends Controller
             echo"<br>$i-$name";
 
         }*/
+    }
+
+    public function storecomment(Request $request)
+    {
+
+        $data=new Comment();
+        $data->user_id=Auth::id();
+        $data->subject=$request->input('subject');
+        $data->review=$request->input('review');
+        $data->rate=$request->input('rate');
+        $data->ip=request()->ip();
+        $data->save();
+
+
+
+
+        return redirect()->route('references')->with('success','Yorumunuz Kaydedilmiştir! Teşekkür ederiz');
+
+
+    }
+
+    public function commentuser($id)
+    {
+        $comment=Comment::where('user_id','=',Auth::id())->get();
+
+        return view('home.references',['comment'=>$comment]);
     }
 }

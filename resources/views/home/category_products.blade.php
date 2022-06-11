@@ -34,6 +34,8 @@
         <div class="row">
             <div class="col-sm-4 ">
                 <a  href="{{route('home')}}"><i class="fa fa-home"  ></i>HOME</a>
+
+
                 @foreach($datalist as $rs)
                     <div class="login-form"><!--login form-->
                         <ul class="breadcrumb">
@@ -51,20 +53,8 @@
                                     <div class="product-details"><!--product-details-->
                                         <div class="col-sm-5">
                                             <div class="view-product">
-                                                <img src="{{Storage::url($rs->image)}}" alt="" />
+                                                <img src="{{Storage::url($rs->image)}}"  style="height:500px" style="width: 300px"  alt="" />
 
-                                            </div>
-                                            <div id="similar-product" class="carousel slide" data-ride="carousel">
-
-                                                <!-- Wrapper for slides -->
-
-                                                <!-- Controls -->
-                                                <a class="left item-control" href="#similar-product" data-slide="prev">
-                                                    <i class="fa fa-angle-left"></i>
-                                                </a>
-                                                <a class="right item-control" href="#similar-product" data-slide="next">
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
                                             </div>
 
                                         </div>
@@ -74,15 +64,23 @@
 
                                                 <div class="col-sm-6">
                                                     <h1>{{$rs->title}}</h1>
-                                                    <h2>{{$rs->price}}</h2>
+                                                    <h2>Fiyat:{{$rs->price}}₺</h2>
+                                                    <h3>Ürün Hakkkında</h3>
+                                                    <h4>{!! $rs->detail !!}</h4>
+                                                    <form action="{{route('user_shopcart_add',['id'=>$data->id])}}" method="post" >
+                                                        @csrf
+
+
 
                                                     <a href="{{route('product',['id'=>$rs->id,'slug',$rs->slug])}}"  class="btn btn-default get">Sipariş ver</a>
+                                                    </form>
                                                 </div>
 
 
 
 
-								</span>
+                                                </span>
+
 
 
                                             </div><!--/product-information-->

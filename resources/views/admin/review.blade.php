@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Reviews Messages List')
+@section('title', 'Comment & Reviews')
 
 
 
@@ -45,34 +45,35 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Product</th>
+                                <th>Name</th>
                                 <th>Subject</th>
                                 <th>Review</th>
                                 <th>Rate</th>
                                 <th>Status</th>
-                                <th>Date</th>
-
-                                <th style="..." colspan="3">Actions</th>
+                                <th>Show</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
 
                             </thead>
                             <tbody>
-                            @include('home.message')
+
                             @foreach($datalist as $rs)
                                 <tr>
                                     <td>{{$rs->id}}</td>
-                                    <td><a href="{{route('product',['id'=>$rs->product->id])}}" target="_blank">
-                                            {{$rs->product->title}}</a>
-                                    </td>
+                                    <td>{{$rs->user->name}}</td>
                                     <td>{{$rs->subject}}</td>
                                     <td>{{$rs->review}}</td>
                                     <td>{{$rs->rate}}</td>
                                     <td>{{$rs->status}}</td>
-                                    <td>{{$rs->created_ad}}</td>
+                                    <td>
+                                        <a href="{{route('admin_review_show',['id'=> $rs->id])}} " onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
+                                           SHOW
+                                        </a>
+                                    </td>
 
                                     <td>
-                                        <a href="{{route('user_review_delete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are You Sure?')">
+                                        <a href="{{route('admin_review_delete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are You Sure?')">
                                             <img src="{{asset('assets/admin/img')}}/bin.png" height="25">
                                         </a>
                                     </td>

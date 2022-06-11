@@ -27,7 +27,7 @@ $daily =  \App\Models\Product::select('id','title','price','image')->limit(3)->g
 
                 <div class="item @if($i==1)active @endif">
                     <img src="{{Storage::url($rs->image)}} " style="height:200px" style="width: 200px" alt="" />
-                    <h2>{{$rs->price}}</h2>
+                    <h2>{{$rs->price}}₺</h2>
                     <p>{{$rs->title}}</p>
 
 
@@ -53,14 +53,14 @@ $daily =  \App\Models\Product::select('id','title','price','image')->limit(3)->g
 
                 <div class="product-overlay">
                     <div class="overlay-content">
-                        <h2>{{$rs->price}}</h2>
+                        <h2>{{$rs->price}}₺</h2>
                         <p>{{$rs->title}}</p>
-                        <a href="{{route('product',['id'=>$rs->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Quick Review</a>
+                        <a href="{{route('product',['id'=>$rs->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-rev"></i>Hızlı İnceleme</a>
                         <div>
                             <form action="{{route('user_shopcart_add',['id'=>$rs->id])}}" method="post" >
                                 @csrf
                                 <input class="input" name="quantity" type="hidden" value="1" >
-                                <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to card</button>
+                                <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</button>
                             </form>
                         </div>
 
@@ -99,9 +99,9 @@ $daily =  \App\Models\Product::select('id','title','price','image')->limit(3)->g
                 <div class="single-products">
 
                     <div class="item @if($i==1)active @endif">
-                        <img src="{{Storage::url($rs->image)}} " style="height:400px" style="width: 400px" alt="" />
+                        <img src="{{Storage::url($rs->image)}} " style="height:200px" style="width: 200px" alt="" />
 
-                        <h2>{{$rs->price}}</h2>
+                        <h2>{{$rs->price}}₺</h2>
                         <p>{{$rs->title}}</p>
 
                     </div>
@@ -125,12 +125,12 @@ $daily =  \App\Models\Product::select('id','title','price','image')->limit(3)->g
                     <div class="product-overlay">
                         <div class="overlay-content">
 
-                            <a href="{{route('product',['id'=>$rs->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Quick Review</a>
+                            <a href="{{route('product',['id'=>$rs->id])}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Hızlı İnceleme</a>
                             <div>
                                 <form action="{{route('user_shopcart_add',['id'=>$rs->id])}}" method="post" >
                                     @csrf
                                     <input class="input" name="quantity" type="hidden" value="1" >
-                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to card</button>
+                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</button>
                                 </form>
                             </div>
                         </div>

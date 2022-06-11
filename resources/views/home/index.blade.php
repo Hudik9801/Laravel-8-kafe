@@ -6,10 +6,10 @@ $setting=\App\Http\Controllers\HomeController::getsetting()
 
 
 
-@section('title', $setting->title)
+@section('title', 'Lokum Tantuni')
 
-@section('description'){{$setting->description}}@endsection
-@section('keywords',$setting->keywords)
+@section('description'){{$setting->description ?? 'code not found'}}@endsection
+@section('keywords',$setting->keywords ?? 'code not found')
 
 @section('footerjs')
     <script src="{{asset('assets')}}/js/jquery.js"></script>

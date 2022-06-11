@@ -64,12 +64,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" href="#about"><i class="la la-about me-2"></i> About Us</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#page"><i class="la la-page me-2"></i> Contact Page</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#referencess"><i class="la la-referencess me-2"></i> References</a>
-                                    </li>
 
 
                                 </ul>
@@ -173,7 +167,7 @@
                                         <div class="pt-4">
                                             <div class="mb-6">
 
-                                                <textarea id="aboutus" type="text" name="aboutus" class="form-control"></textarea>
+                                                <textarea id="aboutus" type="text" name="aboutus" class="form-control">{{$data->aboutus}}</textarea>
 
                                             </div>
                                             <script>
@@ -193,7 +187,7 @@
                                         <div class="pt-4">
                                             <div class="mb-6">
 
-                                                <textarea id="contact" type="text" name="contact" class="form-control"></textarea>
+                                                <textarea id="contact" type="text" name="contact" class="form-control">{{$data->contact}}</textarea>
 
                                             </div>
                                             <script>
@@ -210,7 +204,7 @@
                                         <div class="pt-4">
                                             <div class="mb-6">
 
-                                                <textarea id="references" type="text" name="references" class="form-control"></textarea>
+                                                <textarea id="references" type="text" name="references" class="form-control">{{$data->references}}</textarea>
 
                                             </div>
                                             <script>

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OdemeSekli;
 use App\Models\Order;
 use App\Models\Orderitem;
+use App\Models\Payment;
 use App\Models\Shopcart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -30,7 +33,9 @@ class OrderController extends Controller
     {
         $total = $request->input('total');
         return view('home.user_order_add',['total'=>$total]);
+
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,6 +45,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $data=new Order;
 
         $data->tableno=$request->input('tableno');
@@ -60,8 +67,7 @@ class OrderController extends Controller
             $data2->save();
 
         }
-        $data3=Shopcart::where('user_id',Auth::id());
-        $data3->delete();
+
 
 
         return redirect()->route('user_orders')->with('success','Product Added Succesfuly');
@@ -112,4 +118,61 @@ class OrderController extends Controller
     {
         //
     }
+
+
+    public function siparis(Request $request){
+        if($request->isMethod('post')){
+            $data=Shopcart::where('user_id',Auth::id())->get();
+
+            $total = $request->total;
+
+        }else{
+            echo "Hata: Post bilgisi yok";
+
+        }
+        return view('home.odeme_yap',['data'=>$data,'$total'=>$total])->with('success','Ödeme başarılı bir şekilde yapıldı');
+
+    }
+
+    public function satinal()
+    {
+        return back()->with('status', 'Kart Bilgileriniz Alındı');
+
+
+
+
+    }
+
+    public function odemesekli()
+    {
+        $datalist=OdemeSekli::where('user_id','=',Auth::user()->id)->get();
+        return view('home.user_odeme_sekli',['datalist'=>$datalist]);
+
+
+
+    }
+
+    public function orderplace(Request $request)
+    {
+        $payment_method=$request->payment;
+        $pdata=array();
+        $pdata['payment_method']=$payment_method;
+        $pdata['status']='Ödeme alındı';
+        $payment_method=Payment::insertGetId($pdata);
+
+
+        $data3 = Shopcart::where('user_id',Auth::id());
+        $data3->delete();
+
+            return back()->with('status', 'Ödeme Yapıldı');
+    }
+
+    public function kcart()
+    {
+
+
+    return view('home.payment_method');
+
+    }
+
 }

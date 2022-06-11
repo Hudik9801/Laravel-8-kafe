@@ -43,9 +43,6 @@
 
 
             <div class="card col-md-9">
-                <div class="card-header">
-                    <a href="{{route('user_product_add')}}" type="button" class="btn btn-primary me-2" style="width: 200px" id="js-programmatic-enable" enctype="multipart/form-data">Add Product</a>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="example" class="display" style="min-width:900px">
@@ -55,8 +52,8 @@
                                 <th>TableNo</th>
                                 <th>Total</th>
                                 <th>Date</th>
-                                <th>Status</th>
-                                <th>Edit</th>
+                                <th>Sipariş Durumu</th>
+                                <th>Siparişlerim</th>
                             </tr>
                             </thead>
 
@@ -69,7 +66,7 @@
                                         <td>{{ $rs->total }}</td>
                                         <td>{{ $rs->created_at }}</td>
                                         <td>{{ $rs->status }}</td>
-                                        <td><a href="{{route('user_order_show',['id'=> $rs->id])}}"><img src="{{asset('assets/admin/img')}}/pencil.png" height="30"></a></td>
+                                        <td><a href="{{route('user_order_show',['id'=> $rs->id])}}">Siparişleriniz görmek için tıklayın</a></td>
                                     </tr>
                                 @endforeach
                             </div>

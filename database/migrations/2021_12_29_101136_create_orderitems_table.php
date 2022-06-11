@@ -20,9 +20,9 @@ class CreateOrderitemsTable extends Migration
             $table->integer('order_id');
             $table->integer('price');
             $table->integer('amount');
-            $table->float('total');
+            $table->float('total')->nullable();
             $table->string('note',150)->nullable();
-            $table->string('IP',20);
+            $table->string('IP',20)->nullable();
             $table->string('status',30)->default('New');
             $table->timestamps();
         });

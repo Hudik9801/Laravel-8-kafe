@@ -48,7 +48,7 @@ class Review extends Component
 
 
         ]);
-        session()->flash('message','Revire Send Succesfuly');
+        session()->flash('message','Revire Send Successfully');
         $this->resetİnput();
 
     }

@@ -22,7 +22,7 @@ $slider= \App\Models\Product::limit(4)->get();
                         <div class="item {{$it['id']==1?'active':''}}">
                             <div class="col-sm-6">
                                 <h1>{{$item->title}}</h1>
-                                <h2>{{$item->price}}</h2>
+                                <h2>{{$item->price}}₺</h2>
 
                                 <a href="{{route('product',['id'=>$item->id,'slug',$item->slug])}}"  class="btn btn-default get">Tadina Bak</a>
                             </div>

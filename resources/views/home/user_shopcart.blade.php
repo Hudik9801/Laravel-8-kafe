@@ -1,11 +1,29 @@
-@extends('layouts.home')
 
-
-@section('title','My Shopcart')
-
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="@yield('viewport')">
+    <meta name="description" content="@yield('description')">
+    <meta name="author" content="Hudayberdi Ashyrov">
+    <title>My Shopcart</title>
+    <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/prettyPhoto.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/price-range.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/animate.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/css/main.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/responsive.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="{{asset('assets')}}/js/html5shiv.js"></script>
+    <script src="{{asset('assets')}}/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('assets')}}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets')}}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets')}}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets')}}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets')}}/images/ico/apple-touch-icon-57-precomposed.png">
+<body>
 
 <div id="breadcrumb">
     <div class="container">
@@ -80,15 +98,11 @@
                         <td colspan="2">
                             <table class="table table-condensed total-result">
                                 <tr>
-                                    <td>Cart Sub Total</td>
+                                    <td>Ödenecek Tutar</td>
                                     <td>${{$total}}</td>
                                 </tr>
-                                <tr class="shipping-cost">
-                                    <td>Shipping Cost</td>
-                                    <td>Free</td>
-                                </tr>
                                 <tr>
-                                    <td>Total</td>
+                                    <td>Toplam Fiyat</td>
                                     <td><span>${{$total}}</span></td>
                                 </tr>
                             </table>
@@ -98,13 +112,30 @@
 
                 </table>
 
+
+
+
+
                 <form action="{{route('user_order_add')}}" method="post">
                     @csrf
                     <input type="hidden" name="total" value="{{$total}}" >
                     <div class="pull-right">
-                        <button type="submit" class="primary-btn">Place Order</button>
+                        <button type="submit" class="primary-btn">Sipariş Ver</button>
                     </div>
                 </form>
+
+                <form action="{{route('myreviews')}}" method="get">
+                    @csrf
+                    <div class="pull-left">
+                        <button class="btn btn-primary">Ödeme Yapmak İçin Tıklayınız</button>
+                    </div>
+
+                </form>
+
+
+
+
+
 
             </div>
         </div>
@@ -112,6 +143,8 @@
     </div>
 
 </div>
+</body>
+</html>
 
 
 

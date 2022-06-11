@@ -47,11 +47,11 @@
                     <thead>
                     <tr class="cart_menu">
                         <td>Image</td>
+
                         <td >Product</td>
                         <td >Price</td>
                         <td >Total</td>
-                        <td >Status</td>
-                        <td >Note</td>
+
 
 
                     </tr>
@@ -77,37 +77,39 @@
                                 <td>{{ $rs->product->price }}</td>
 
                                 <td>{{ $rs->amount}}</td>
-                                <td>{{ $rs->status}}</td>
-                                <td>{{ $rs->note}}</td>
+
 
 
                             </tr>
 
 
 
+
                     @endforeach
-
-
-                    </tbody>
-                    <tfoot>
-
-                    <tr>
-                        <td colspan="4">&nbsp;</td>
-                        <td colspan="2">
 
                             <table class="table table-condensed total-result">
 
                                 <tr>
-                                    <td>SUBTOTAL</td>
+                                    <td>Toplam Tutar</td>
                                     <td>${{$rs->order->total}}</td>
                                 </tr>
 
                             </table>
-                        </td>
-                    </tr>
-                    </tfoot>
+
+
+
+                    </tbody>
 
                 </table>
+                <form action="{{route('myreviews')}}" method="get">
+                    @csrf
+                    <div class="pull-left">
+                        <button class="btn btn-primary">Ödeme Yapmak İçin Tıklayınız</button>
+                    </div>
+
+                </form>
+
+
 
 
             </div>

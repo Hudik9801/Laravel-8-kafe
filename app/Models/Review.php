@@ -22,6 +22,10 @@ class Review extends Model
 
        ];
 
+    public static function create(array $array)
+    {
+    }
+
     public function product(){
 
         return $this->belongsTo(Product::class);

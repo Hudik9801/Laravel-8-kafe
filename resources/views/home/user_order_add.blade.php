@@ -1,7 +1,30 @@
-@extends('layouts.home')
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="@yield('viewport')">
+    <meta name="description" content="@yield('description')">
+    <meta name="author" content="Hudayberdi Ashyrov">
+    <title>Order Products</title>
+    <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/prettyPhoto.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/price-range.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/animate.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/css/main.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/responsive.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="{{asset('assets')}}/js/html5shiv.js"></script>
+    <script src="{{asset('assets')}}/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('assets')}}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets')}}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets')}}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets')}}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets')}}/images/ico/apple-touch-icon-57-precomposed.png">
+<body>
 
-@section('title', 'Order Products')
 
 <div id="breadcrumb">
     <div class="container">
@@ -15,6 +38,9 @@
 
                 </ul>
             </div>
+
+
+
             <form action="{{route('user_order_store')}}" method="post">
                 @csrf
 
@@ -24,57 +50,63 @@
                     </div>
 
 
-                        <div class="form-one">
+                    <div class="form-one">
 
-                            <input class="form-control" type="text"  name="tableno"  value="" placeholder="Table No*" required>
+                        <input class="form-control" type="text"  name="tableno"  value="" placeholder="Masa No" required>
 
 
-                        </div>
                     </div>
+                </div>
 
 
 
-                    <div class="card col-sm-9">
-                        <div class="shopper-info">
-                            <p>Payments Detail Total:${{$total}}</p>
+                <div class="card col-sm-9">
+                    <div class="shopper-info">
+                        <p>Toplam Fiyat:${{$total}}</p>
 
 
                         <div class="input-checkbox">
                             <input type="hidden" name="total" value="{{$total}}">
 
 
-                        </div>
-
-
-
-                        <input class="form-control" type="text"  name="cardname"  value="" placeholder="Name&Surname*" required>
-
-                        <input class="form-control" type="text"  name="cardnumber"  value="" placeholder="Card Number*" required>
-
-                        <input class="form-control" type="text"  name="dates"  value="" placeholder="mm/yy*" required>
-
-                        <input class="form-control" type="text"  name="key"  value="" placeholder="Secret Number*" required>
-
-
-                                <div class="pull-right">
-                                    <button class="btn btn-primary">Ürün Satin Al</button>
-                                </div>
-
-
-
 
 
                         </div>
+                        <div class="pull-right">
+                            <button class="btn btn-primary">Sipariş Ver</button>
+                        </div>
+
                     </div>
+                </div>
 
-            </form>
+
+
+                        </form>
+
+
+
+
+
 
 
 
         </div>
+
+
+
+
+
+
+        </form>
+
+
+
+
+    </div>
     </div>
 </div>
-
+</body>
+</html>
 
 
 

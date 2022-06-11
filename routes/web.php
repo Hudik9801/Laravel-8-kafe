@@ -40,6 +40,8 @@ Route::get('/categoryproducts/{id}', [HomeController::class, 'categoryproducts']
 Route::get('/addtocard/{id}', [HomeController::class, 'addtocard'])->name('addtocard');
 Route::post('/getproduct', [HomeController::class, 'getproduct'])->name('getproduct');
 Route::get('/productlist/{search}', [HomeController::class, 'productlist'])->name('productlist');
+Route::post('/storecomment', [HomeController::class, 'storecomment'])->name('storecomment');
+Route::get('/commentuser', [HomeController::class, 'commentuser'])->name('commentuser');
 
 Route::get('/test/{id}/{name}', [HomeController::class, 'test'])->whereNumber('id')->whereAlpha('name')->name('test');
 
@@ -136,9 +138,22 @@ Route::middleware('auth')->prefix('admin')->group(function() {
             Route::post('itemupdate/{id}', [AdminoderController::class, 'itemupdate'])->name('admin_order_item_update');
             Route::get('delete/{id}', [AdminoderController::class, 'destroy'])->name('admin_order_delete');
             Route::get('show/{id}', [AdminoderController::class, 'show'])->name('admin_order_show');
+            Route::get('odemeler', [AdminoderController::class, 'odemeler'])->name('admin_odemeler');
 
 
         });
+
+        //Admin Employee
+        Route::prefix('employee')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\EmployeeController:: class, 'index'])->name('admin_employee');
+            Route::get('add', [\App\Http\Controllers\Admin\EmployeeController:: class, 'add'])->name('admin_employee_add');
+            Route::post('create', [\App\Http\Controllers\Admin\EmployeeController:: class, 'create'])->name('admin_employee_create');
+
+
+        });
+
+
+
         //Admin Users
         Route::prefix('user')->group(function () {
             Route::get('/', [\App\Http\Controllers\Admin\UserController:: class, 'index'])->name('admin_users');
@@ -166,6 +181,7 @@ Route::middleware('auth')->prefix('admin')->group(function() {
 Route::middleware('auth')->prefix('myaccount')->namespace('myaccount')->group(function() {
    Route::get('/',[\App\Http\Controllers\UserController::class,'index'])->name('myprofile');
     Route::get('/myreviews',[\App\Http\Controllers\UserController::class,'myreviews'])->name('myreviews');
+    Route::get('/degerlendirme',[\App\Http\Controllers\UserController::class,'degerlendirme'])->name('degerlendir');
     Route::get('/destroymyreview/{id}',[\App\Http\Controllers\Admin\ReviewController::class,'destroymyreview'])->name('user_review_delete');
 
 
@@ -206,6 +222,9 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function() {
 
 
 
+
+
+
     });
 
     //Order
@@ -217,6 +236,12 @@ Route::middleware('auth')->prefix('user')->namespace('user')->group(function() {
         Route::post('update/{id}',[\App\Http\Controllers\OrderController::class,'update'])->name('user_order_update');
         Route::get('delete/{id}',[\App\Http\Controllers\OrderController::class,'destroy'])->name('user_order_delete');
         Route::get('show/{id}',[\App\Http\Controllers\OrderController::class,'show'])->name('user_order_show');
+        Route::post('siparis',[\App\Http\Controllers\OrderController::class,'siparis'])->name('user_siparis_tamamla');
+        Route::post('satinal',[\App\Http\Controllers\OrderController::class,'satinal'])->name('user_satin_al');
+        Route::post('odemesekli',[\App\Http\Controllers\OrderController::class,'odemesekli'])->name('user_odeme_sekli');
+        Route::post('orderplace',[\App\Http\Controllers\OrderController::class,'orderplace'])->name('user_order_place');
+        Route::get('kcart',[\App\Http\Controllers\OrderController::class,'kcart'])->name('user_online_odeme');
+
 
 
     });

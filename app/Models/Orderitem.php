@@ -26,4 +26,11 @@ class Orderitem extends Model
     }
 
 
+    public function odemesekli()
+    {
+        return $this->hasMany(odemesekli::class);
+
+    }
+
+
 }

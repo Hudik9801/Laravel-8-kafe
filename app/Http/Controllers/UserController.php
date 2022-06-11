@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class UserController extends Controller
 
     public function myreviews()
     {
-        $datalist=Review::where('user_id','=',Auth::user()->id)->get();
+        $datalist=Comment::where('user_id','=',Auth::user()->id)->get();
         return view('home.user_reviews',['datalist'=>$datalist]);
 
 

@@ -1,8 +1,31 @@
-@extends('layouts.home')
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="@yield('viewport')">
+    <meta name="description" content="@yield('description')">
+    <meta name="author" content="Hudayberdi Ashyrov">
+    <title>Ödeme Yapma</title>
+    <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/prettyPhoto.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/price-range.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/animate.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/css/main.css" rel="stylesheet"/>
+    <link href="{{asset('assets')}}/css/responsive.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+    <script src="{{asset('assets')}}/js/html5shiv.js"></script>
+    <script src="{{asset('assets')}}/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('assets')}}/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets')}}/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets')}}/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets')}}/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets')}}/images/ico/apple-touch-icon-57-precomposed.png">
+<body>
 
 
-
-@section('title', 'My Reviews')
 
 <div id="breadcrumb">
     <div class="container">
@@ -10,8 +33,10 @@
             <div class="card col-md-3">
                 <ul class="breadcrumb">
                     <li><a  href="{{route('home')}}"><i class="fa fa-home"  ></i>HOME</a></li>
-                    <li><a  href="#"><i class="fa fa-home"  ></i>User Reviews</a></li>
+                    <li><a  href="#"><i class="fa fa-home"  ></i>Ödeme Yapma</a></li>
                     @include('home.usermenu')
+
+
 
 
 
@@ -22,69 +47,84 @@
             <div class="card col-md-9">
                 <div class="card-body">
                     <div class="table-responsive">
+                        @if(session('status'))
+                            <div class="alert alert-success">{{session('status')}}</div>
+                        @endif
 
-                                   <table id="example1" class="table table-bordered table-striped">
-                                       <thead>
-                                       <tr>
-                                       <th>Id</th>
-                                       <th>Product</th>
-                                       <th>Subject</th>
-                                       <th>Review</th>
-                                       <th>Rate</th>
-                                       <th>Status</th>
-                                       <th>Date</th>
+                        <form action="{{route('user_order_place')}}" method="post">
+                            @csrf
 
-                                       <th style="..." colspan="3">Actions</th>
-                                       </tr>
-                                       </thead>
+                            <div class="section-title text-center" style="margin-top:40px; " >
+                                <h4>Lütfen Ödeme Şeklini Şeçiniz</h4>
 
-                                       </thead>
-                                       <tbody>
-                                       @include('home.message')
-                                       @foreach($datalist as $rs)
-                                           <tr>
-                                               <td>{{$rs->id}}</td>
-                                               <td><a href="{{route('product',['id'=>$rs->product->id])}}" target="_blank">
-                                                       {{$rs->product->title}}</a>
-                                               </td>
-                                               <td>{{$rs->subject}}</td>
-                                               <td>{{$rs->review}}</td>
-                                               <td>{{$rs->rate}}</td>
-                                               <td>{{$rs->status}}</td>
-                                               <td>{{$rs->created_ad}}</td>
+                            </div>
 
-                                               <td>
-                                                   <a href="{{route('user_review_delete',['id'=>$rs->id])}}" onclick="return confirm('Delete! Are You Sure?')">
-                                                       <img src="{{asset('assets/admin/img')}}/bin.png" height="25">
-                                                   </a>
-                                               </td>
+                            <div class="payment-method">
+                                <div class="input-radio">
+                                    <input type="radio" name="payment" id="payment-1" value="cash">
+
+                                    <label for="payment-1">
+                                        <span></span>
+                                        Nakit Ödeme
+                                    </label>
 
 
 
-                                           </tr>
-                                       @endforeach
-                                       </tbody>
-                                   </table>
 
 
+                            </div>
+                            <div class="input-radio">
+                                <input type="radio" name="payment" id="payment-2" value="Bcash">
 
+
+                                <label for="payment-2">
+                                    <span></span>
+                                    Kredi Kart ile Ödeme
+                                </label>
+
+
+                            </div>
+
+                                <div class="input-radio">
+                                    <input type="radio" name="payment" id="payment-2" value="Ocash">
+
+
+                                    <label for="payment-2">
+                                        <span></span>
+
+                                    </label>
+                                    <a href="{{route('user_online_odeme')}} " methods="post" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
+                                    Online Ödeme
+                                    </a>
 
 
 
                                 </div>
 
-                            </div>
 
-                        </div>
+
+
+
+                                <input type="submit" class="primary-btn order-submit" value="Ödeme Yap" style="float: right">
+                            </div>
+                        </form>
+
+
+
 
                     </div>
 
+                </div>
 
-
-
-                </div><!--/sign up form-->
             </div>
+
         </div>
-    </div>
+
+
+
+
+    </div><!--/sign up form-->
 </div>
 
+</body>
+</html>

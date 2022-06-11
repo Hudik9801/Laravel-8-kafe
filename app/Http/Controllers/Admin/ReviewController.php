@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -15,7 +17,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $datalist=Review::all();
+        $datalist=Comment::where('user_id','=',Auth::id())->get();
         return view('admin.review',['datalist'=>$datalist]);
     }
 
@@ -48,8 +50,8 @@ class ReviewController extends Controller
      */
     public function show(Review $review,$id)
     {
-       $data=Review::find($id);
-       return view('admin.review_edit',['data'=>$data]);
+       $data=Comment::find($id);
+       return view('admin.comment_items',['data'=>$data]);
     }
 
     /**
@@ -70,12 +72,12 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review,$id)
+    public function update(Request $request,$id)
     {
-       $data=Review::find($id);
-       $data->status=$request->input('status');
+       $data=Comment::find($id);
+       $data->status=$request->status;
        $data->save();
-       return back()->with('success','Review Update');
+       return redirect(route('admin_review_show',['id'=>$id]));
     }
 
     /**
@@ -86,8 +88,11 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review,$id)
     {
-        $data=Review::find($id);
+        $data=Comment::find($id);
         $data->delete();
         return redirect()->back()->with('success','Review Delete');
+
+
     }
+
 }

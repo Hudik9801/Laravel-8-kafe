@@ -11,20 +11,49 @@
 
 
         <ul class="metismenu" id="menu">
+            <li><a class="has-arrow " href="{{route('admin_employee')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    Çalışanlar
+                </a>
+            </li>
+
 
 
             <li><a class="has-arrow " href="{{route('admin_category')}}" aria-expanded="false">
                     <i class="fas fa-info-circle"></i>
-                    Category
+                    Kategoriler
                 </a>
 
 
             </li>
             <li><a class="has-arrow " href="{{route('admin_products')}}" aria-expanded="false">
                     <i class="fas fa-info-circle"></i>
-                    Products
+                    Ürünler
                 </a>
             </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-table"></i>
+                    <span class="nav-text">Siparişler</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{route('admin_orders')}}">All Orders</a></li>
+                    <li><a href="{{route('admin_orders')}}">New Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'completed'])}}">Completed Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'canceled'])}}">Canceled Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'accepted'])}}">Accepted Orders</a></li>
+                    <li><a href="{{route('admin_order_list',['status'=>'shipping'])}}">Shipping Orders</a></li>
+
+                </ul>
+            </li>
+            <li><a class="has-arrow " href="{{route('admin_odemeler')}}" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                   Ödemeler
+                </a>
+            </li>
+
+
+
+
             <li><a class="has-arrow " href="{{route('admin_message')}}" aria-expanded="false">
                     <i class="fas fa-info-circle"></i>
                     Contact Messages
@@ -44,24 +73,6 @@
                     <i class="fas fa-info-circle"></i>
                     Reviews
                 </a>
-            </li>
-            <li><a class="has-arrow " href="{{route('admin_faq')}}" aria-expanded="false">
-                    <i class="fas fa-info-circle"></i>
-                    FAQ
-                </a>
-            </li>
-            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                    <i class="fas fa-table"></i>
-                    <span class="nav-text">Orders</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('admin_orders')}}">All Orders</a></li>
-                    <li><a href="{{route('admin_orders')}}">New Orders</a></li>
-                    <li><a href="{{route('admin_order_list',['status'=>'canceled'])}}">Canceled Orders</a></li>
-                    <li><a href="{{route('admin_order_list',['status'=>'accepted'])}}">Accepted Orders</a></li>
-                    <li><a href="{{route('admin_order_list',['status'=>'shipping'])}}">Shipping Orders</a></li>
-                    <li><a href="{{route('admin_order_list',['status'=>'completed'])}}">Completed Orders</a></li>
-                </ul>
             </li>
 
             <li><a class="has-arrow " href="{{route('admin_users')}}" aria-expanded="false">
@@ -98,10 +109,6 @@
             </div>
         </div>
 
-        <div class="copyright">
-            <p><strong>Fillow Saas Admin</strong> © 2021 All Rights Reserved</p>
-            <p class="fs-12">Made with <span class="heart"></span> by DexignLabs</p>
-        </div>
     </div>
 </div>
 <!--**********************************
